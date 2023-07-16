@@ -17,9 +17,9 @@ export default function Register() {
 
   const formik = useFormik({
     initialValues : {
-      email: 'doyol56239@cnogs.com',
-      username: 'example123',
-      password : 'admin@123'
+      email: '',
+      username: '',
+      password : ''
     },
     validate : registerValidation,
     validateOnBlur: false,
@@ -33,7 +33,7 @@ export default function Register() {
         error : <b>Could not Register.</b>
       });
 
-      registerPromise.then(function(){ navigate('/')});
+      registerPromise.then(function(){ navigate('/userlogin')});
     }
   })
 

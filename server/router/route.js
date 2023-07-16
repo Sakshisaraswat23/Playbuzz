@@ -6,7 +6,16 @@ import * as controller from '../controllers/appController.js';
 import { registerMail } from '../controllers/mailer.js'
 import Auth, { localVariables } from '../middleware/auth.js';
 
-
+import  {
+	getUsers,
+	getUserById,
+	editUser,
+	addUser
+} from '../controllers/user-controller.js';
+router.get('/', getUsers);
+router.post('/add', addUser);
+router.get('/:id', getUserById);
+router.put('/:id', editUser);
 
 /** POST Methods */
 router.route('/register').post(controller.register); // register user
