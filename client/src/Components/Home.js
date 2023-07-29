@@ -26,7 +26,6 @@ function Home() {
 					}}
 				>
 					PRAYATNA
-					<Link to="/userlogin">click me</Link>
 				</Typography>
 			</div>
 		</>

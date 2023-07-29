@@ -49,4 +49,56 @@ export const editUser = async (request, response) => {
 	}
 };
 
+//count number of matches
+export const matchCountContoller=async (req,res)=>{
+	try {
+		const total = await User.countDocuments();
+		console.log(total)
+		res.status(200).json(total);
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+
+};
+
+//pagination --> showing list based on pages
+export const matchListController = async (req,res) =>{
+	try{
+		const { checked, radio } = req.body;
+		console.log(checked);
+		console.log(radio);
+	 	let args = {};
+	  	if (checked?.length > 0) args.sports = checked;
+	  	if (radio?.length) args.gender = radio;
+		const perPage=3;
+		const page=req.params.page ? req.params.page : 1;
+		console.log(args)
+		const users= await User
+		.find(args)
+		.skip((page-1) * perPage)
+		.limit(perPage)
+		// console.log(users)
+		res.status(200).send(users);
+	}
+	catch( error){
+		res.status(400).json({message: error.message});
+	}
+
+}
+
+//filter
+export const matchFiltersController = async (req, res) => {
+	try {
+	  const { checked, radio } = req.body;
+	  let args = {};
+	  if (checked.length > 0) args.sports = checked;
+	  if (radio.length) args.gender = radio;
+	  const matches = await User.find(args);
+	  console.log(matches);
+	  res.status(200).send(matches);
+	} catch (error) {
+	  console.log(error);
+	  res.status(400).send({message: error.message });
+	}
+  };
 // module.exports = { getUsers, getUserById, editUser,addUser };

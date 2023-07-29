@@ -24,7 +24,11 @@ export const UserSchema = new mongoose.Schema({
     lastName: { type: String},
     mobile : { type : Number},
     address: { type: String},
-    profile: { type: String}
+    profile: { type: String},
+    liked: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'badminton'
+    }]
 });
 
 export default mongoose.model.Users || mongoose.model('User', UserSchema);

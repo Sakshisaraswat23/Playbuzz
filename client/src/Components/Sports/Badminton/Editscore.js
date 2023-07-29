@@ -19,7 +19,7 @@ import { UserContext } from '../../../UserContext';
 import { Link } from 'react-router-dom';
 
 const PORT = process.env.PORT || 8080;
-const socket = io(`http://localhost:${PORT}`);
+const socket = io(`http://localhost:8080`);
 
 const initialValue = {
 	title: '',
@@ -91,7 +91,6 @@ function Editscore(props) {
 	const title_array = user.title.split(' ');
 	return (
 		<>
-		{admin ?
 			<Table className={classes.table}>
 				<TableHead>
 					<TableRow className={classes.thead}>
@@ -150,16 +149,8 @@ function Editscore(props) {
 						)}
 					</TableRow>
 				</TableBody>
-			</Table>:
-			<div>
-        <FormGroup className={classes.container}>
-        <Typography variant="h4">Please Login to continue.</Typography>
-        <Link to="/login" style={{ textDecoration: 'none' }}>
-                <Button  variant="contained" color="primary">Go to Login Page</Button>
-        </Link>
-        </FormGroup>
-        </div>
-        }
+			</Table>
+			
 		</>
 	);
 }

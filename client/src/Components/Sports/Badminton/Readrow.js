@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { getUsername } from '../../../helper/helper';
 import axios from "axios";
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
 
 const useStyles = makeStyles({
 	row: {
@@ -33,9 +34,6 @@ function Readrow({ user }) {
 			setShow(false);
 		}
 	};
-	var currentDate = new Date().toLocaleDateString('en-GB');
-	var matchDate = new Date(user.date).toLocaleDateString('en-GB');
-	const showedit = matchDate === currentDate;
 	const classes = useStyles();
 	function showrow(val) {
 		return (
@@ -44,7 +42,7 @@ function Readrow({ user }) {
 					<TableCell>{val}</TableCell>
 					<TableCell>{user[val][0]}</TableCell>
 					<TableCell>{user[val][1]}</TableCell>
-					{showedit && show && (
+					{ show && (
 						<TableCell>
 						<Link to={`/editscore/${user._id}/${val}`} style={{ textDecoration: 'none' }}>
 							<Button

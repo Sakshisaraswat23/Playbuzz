@@ -16,7 +16,8 @@ import { FormGroup, FormControl, InputLabel, Input, Typography } from '@material
 import { Button } from '@mui/material';
 
 const PORT = process.env.PORT || 8080;
-const socket = io(`http://localhost:${PORT}`);
+// const socket = io(`http://localhost:${PORT}`);
+const socket = io(`http://localhost:8080`);
 
 
 

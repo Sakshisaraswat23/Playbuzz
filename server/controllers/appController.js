@@ -275,3 +275,26 @@ export async function resetPassword(req,res){
 }
 
 
+
+export const addliked_matches = async (req, res) => {
+    const { userId } = req.params;
+  const matchId = req.body;
+  try {
+    // Find the user by their ObjectId
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    console.log(matchId)
+    // Add the matchId to the user's 'matches' array
+    user.liked=matchId;
+
+    // Save the updated user document
+    await user.save();
+
+    return res.status(200).json({ message: ' success' });
+  } catch (error) {
+    console.error('Error adding match to user:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+}

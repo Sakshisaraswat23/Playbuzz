@@ -10,15 +10,23 @@ import  {
 	getUsers,
 	getUserById,
 	editUser,
-	addUser
+	addUser,
+	matchCountContoller,
+	matchListController,
+	matchFiltersController
 } from '../controllers/user-controller.js';
 router.get('/', getUsers);
+router.get('/countmatches', matchCountContoller);
 router.post('/add', addUser);
 router.get('/:id', getUserById);
 router.put('/:id', editUser);
+router.post("/match-filters", matchFiltersController); //only filter.
+
+router.post('/pagefilter/:page', matchListController); //filter with pagination.
 
 /** POST Methods */
 router.route('/register').post(controller.register); // register user
+router.route('/addliked_matches/:userId').post(controller.addliked_matches);
 router.route('/registerMail').post(registerMail); // send the email
 router.route('/authenticate').post(controller.verifyUser, (req, res) => res.end()); // authenticate user
 router.route('/login').post(controller.verifyUser,controller.login); // login in app

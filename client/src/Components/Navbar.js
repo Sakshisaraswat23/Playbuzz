@@ -32,7 +32,7 @@ const Navbar = () => {
 	}
 
 	return (
-		<AppBar position="static">
+		<AppBar  overflow="hidden" position="static">
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
@@ -123,7 +123,7 @@ const Navbar = () => {
 							Logout
 						</Button>
 					</Link>:
-					<Link to="/login" style={{ textDecoration: 'none' }}>
+					<Link to="/userlogin" style={{ textDecoration: 'none' }}>
 						<Button sx={{ p: 0 }}  style={{ color: 'white' }}> 
 							<AccountCircleIcon fontSize="large" style={{ color: 'white' }} />
 						</Button>

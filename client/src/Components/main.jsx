@@ -8,7 +8,7 @@ import Editscore from './Sports/Badminton/Editscore';
 import TableTennis from './Sports/TableTennis/TableTennis';
 import AddMatch from './Sports/Badminton/AddMatch';
 import {UserContext} from '../UserContext';
-import Login from './Login';
+// import Login from './Login';
 
 import Profile from '../component/Profile';
 import Username from '../component/Username';
@@ -38,7 +38,6 @@ function App() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route exact path="/login" element={<Login />} />
 				<Route exact path="/badminton" element={<Badminton />} />
 				<Route exact path="/tabletennis" element={<TableTennis />} />
 				<Route exact path="/addmatch/:sport" element={<AddMatch/>} />

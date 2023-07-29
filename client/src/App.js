@@ -8,7 +8,7 @@ import Editscore from './Components/Sports/Badminton/Editscore';
 import TableTennis from './Components/Sports/TableTennis/TableTennis';
 import AddMatch from './Components/Sports/Badminton/AddMatch';
 import {UserContext} from './UserContext';
-import Login from './Components/Login';
+
 
 import Profile from './component/Profile';
 import Username from './component/Username';
@@ -19,6 +19,8 @@ import Reset from './component/Reset';
 import PageNotFound from './component/PageNotFound';
 
 import { AuthorizeUser, ProtectRoute } from './middleware/auth';
+import Webex from './Components/Webex';
+import Tab from './Components/Tab';
 
 
 
@@ -36,9 +38,10 @@ function App() {
 		<>
 		<UserContext.Provider value={{admin,setAdmin}}>
 			<Navbar />
+			{/* <Webex/> */}
+			{/* <Tab/> */}
 			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route exact path="/login" element={<Login />} />
+				<Route path="/" element={<Tab />} />
 				<Route exact path="/badminton" element={<Badminton />} />
 				<Route exact path="/tabletennis" element={<TableTennis />} />
 				<Route exact path="/addmatch/:sport" element={<AddMatch/>} />
