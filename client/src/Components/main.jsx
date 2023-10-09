@@ -40,7 +40,7 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route exact path="/badminton" element={<Badminton />} />
 				<Route exact path="/tabletennis" element={<TableTennis />} />
-				<Route exact path="/addmatch/:sport" element={<AddMatch/>} />
+				<Route exact path="/addmatch" element={<AddMatch/>} />
 				<Route exact path="/badmintonscore/:id"	element={<BadmintonViewScore />} />
 				<Route exact path="/editscore/:id/:set" element={<Editscore />} />
 				<Route exact path= "/profile" element= {<AuthorizeUser><Profile /></AuthorizeUser>} />

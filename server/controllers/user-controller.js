@@ -23,7 +23,7 @@ export const getUserById = async (request, response) => {
 //add data
 export const addUser = async (request, response) => {
     const user = request.body;
-    console.log("inside")
+    // console.log("inside")
 
     const newUser = new User(user);
     try{
@@ -65,14 +65,14 @@ export const matchCountContoller=async (req,res)=>{
 export const matchListController = async (req,res) =>{
 	try{
 		const { checked, radio } = req.body;
-		console.log(checked);
-		console.log(radio);
+		// console.log(checked);
+		// console.log(radio);
 	 	let args = {};
 	  	if (checked?.length > 0) args.sports = checked;
 	  	if (radio?.length) args.gender = radio;
 		const perPage=3;
 		const page=req.params.page ? req.params.page : 1;
-		console.log(args)
+		// console.log(args)
 		const users= await User
 		.find(args)
 		.skip((page-1) * perPage)
@@ -94,7 +94,7 @@ export const matchFiltersController = async (req, res) => {
 	  if (checked.length > 0) args.sports = checked;
 	  if (radio.length) args.gender = radio;
 	  const matches = await User.find(args);
-	  console.log(matches);
+	//   console.log(matches);
 	  res.status(200).send(matches);
 	} catch (error) {
 	  console.log(error);

@@ -8,22 +8,20 @@ export const Gender = [
     _id: 1,
     name: "Male",
     gender: "male",
-  }
+  },
 ];
 
 export const sports = [
-    {
-      _id: 0,
-      name: "Badminton",
-    },
-    {
-      _id: 1,
-      name: "Table Tennis",
-    },
-    {
-      _id: 2,
-      name: "Chess",
-    },
-  ];
-
-
+  {
+    _id: 0,
+    name: "Badminton",
+  },
+  {
+    _id: 1,
+    name: "Table Tennis",
+  },
+  {
+    _id: 2,
+    name: "Chess",
+  },
+];

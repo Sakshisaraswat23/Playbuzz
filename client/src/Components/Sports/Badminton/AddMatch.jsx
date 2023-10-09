@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 })
 
 const AddMatch = () => {
-    const { sport } = useParams();
+    // const { sport } = useParams();
     const initialValue = {
         title: '',
         winner: 'Match pending',
@@ -27,7 +27,7 @@ const AddMatch = () => {
         set2: [0, 0],
         set3: [0, 0],
         gender: '',
-        sports: sport,
+        sports: '',
     }
     const [user, setUser] = useState(initialValue);
     const classes = useStyles();
@@ -54,6 +54,10 @@ const AddMatch = () => {
             <FormControl>
                 <InputLabel htmlFor="my-input">YYYY/MM/DD</InputLabel>
                 <Input onChange={(e) => onValueChange(e)} name='date' required autoComplete="off" />
+            </FormControl>
+            <FormControl>
+                <InputLabel htmlFor="my-input">Sports</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='sports' required autoComplete="off" />
             </FormControl>
             <RadioGroup onChange={(e) => onValueChange(e)} name='gender'>
                 <FormControlLabel value="female" label="Girls" control={<Radio/>}/>
