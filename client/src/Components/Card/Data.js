@@ -15,13 +15,15 @@ export const sports = [
   {
     _id: 0,
     name: "Badminton",
+    field: "badminton",
   },
   {
     _id: 1,
     name: "Table Tennis",
+    field: "table tennis"
   },
-  {
-    _id: 2,
-    name: "Chess",
-  },
+  // {
+  //   _id: 2,
+  //   name: "Chess",
+  // },
 ];

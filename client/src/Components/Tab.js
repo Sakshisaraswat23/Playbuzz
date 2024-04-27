@@ -17,18 +17,18 @@ export default function LabTabs() {
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', maxHeight: "5vh", marginBottom: "2px" }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList
               onChange={handleChange}
               aria-label="lab API tabs example"
             >
-              <Tab  sx={{ fontWeight: 'bold', fontSize: '1.0rem' }} 
-                    label="Matches" 
-                    value="1" />
-              <Tab  sx={{ fontWeight: 'bold', fontSize: '1.0rem' }}
-                    label="Liked " 
-                    value="2" />
+              <Tab sx={{ fontWeight: 'bold', fontSize: '0.9rem', color: "white" }}
+                label="Matches"
+                value="1" />
+              <Tab sx={{ fontWeight: 'bold', fontSize: '0.9rem', color: "white" }}
+                label="Liked "
+                value="2" />
             </TabList>
           </Box>
         </Box>

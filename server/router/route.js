@@ -6,20 +6,20 @@ import * as controller from '../controllers/appController.js';
 import { registerMail } from '../controllers/mailer.js'
 import Auth, { localVariables } from '../middleware/auth.js';
 
-import  {
-	getUsers,
-	getUserById,
-	editUser,
-	addUser,
+import {
+	getMatches,
+	getMatchesById,
+	editScore,
+	addMatches,
 	matchCountContoller,
 	matchListController,
 	matchFiltersController
-} from '../controllers/user-controller.js';
-router.get('/', getUsers);
+} from '../controllers/match-controller.js';
+router.get('/', getMatches);
 router.get('/countmatches', matchCountContoller);
-router.post('/add', addUser);
-router.get('/:id', getUserById);
-router.put('/:id', editUser);
+router.post('/add', addMatches);
+router.get('/:id', getMatchesById);
+router.put('/:id', editScore);
 router.post("/match-filters", matchFiltersController); //only filter.
 
 router.post('/pagefilter/:page', matchListController); //filter with pagination.
@@ -29,7 +29,7 @@ router.route('/register').post(controller.register); // register user
 router.route('/addliked_matches/:userId').post(controller.addliked_matches);
 router.route('/registerMail').post(registerMail); // send the email
 router.route('/authenticate').post(controller.verifyUser, (req, res) => res.end()); // authenticate user
-router.route('/login').post(controller.verifyUser,controller.login); // login in app
+router.route('/login').post(controller.verifyUser, controller.login); // login in app
 
 /** GET Methods */
 router.route('/user/:username').get(controller.getUser) // user with username

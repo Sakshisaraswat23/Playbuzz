@@ -33,18 +33,22 @@ const initialValue = {
 };
 const useStyles = makeStyles({
 	table: {
-		width: '100%',
+		width: '70%',
+		textAlign: "center"
 	},
 	thead: {
 		'& > *': {
 			fontSize: 20,
 			background: '#164e63',
-			color: '#FFFFFF',
+			color: 'white',
+			textAlign: "center"
 		},
 	},
 	row: {
 		'& > *': {
 			fontSize: 18,
+			color: "white",
+			textAlign: "center"
 		},
 	},
 });
@@ -80,54 +84,49 @@ function BadmintonViewScore(props) {
 
 	const title_array = user.title.split(' ');
 	return (
-		<>
+		<div style={{ color: "white", alignContent: "center", justifyContent: "center", alignItems: "center", marginLeft: "23%", marginTop: "6%" }}>
 			<Table className={classes.table}>
 				<TableHead>
 					<TableRow className={classes.thead}>
-						<TableCell></TableCell>
-						<TableCell>{title_array[0]}</TableCell>
+						<TableCell>Set</TableCell>
+						<TableCell >{title_array[0]}</TableCell>
 						<TableCell>{title_array[2]}</TableCell>
-						<TableCell></TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
 					<Readrow user={user} />
 				</TableBody>
 			</Table>
-
-
-
-			<FormGroup style={{width:'30%'}}>
-			{/* <Typography style= {{marginTop:'5%'}} variant="h5">Winner of the match</Typography> */}
-            <FormControl style={{marginLeft: '6%', marginTop: '3%'}}>
-                <InputLabel  htmlFor="my-input">Winner</InputLabel>
-                <Input  onChange={(e) => onValueChange(e)} name='winner' />
+			{/* <FormGroup style={{width:'30%'}}>
+            <FormControl style={{marginLeft: '6%', marginTop: '3%',color:"white"}}>
+                <InputLabel  htmlFor="my-input"style={{color:"white"}} >Winner</InputLabel>
+                <Input style={{color:"white"}} onChange={(e) => onValueChange(e)} name='winner' />
             </FormControl>
 			</FormGroup>
 			{show ? (
-								<Button
-									onClick={() => editUserDetails()}
-									color="primary"
-									variant="contained"
-									style={{margin: '1% 2%'}}
-								>
-									Save
-								</Button>
-						) : (
-						
-								<Button
-									style={{
-										margin: '1% 2%',
-										backgroundColor: '#0f766e',
-										color: 'white',
-									}}
-								>
-									Saved
-								</Button>
-							
-						)}
-			
-		</>
+						<Button
+							onClick={() => editUserDetails()}
+							color="primary"
+							variant="contained"
+							style={{margin: '1% 2%'}}
+						>
+							Save
+						</Button>
+				) : (
+				
+						<Button
+							style={{
+								margin: '1% 2%',
+								backgroundColor: '#0f766e',
+								color: 'white',
+							}}
+						>
+							Saved
+						</Button>
+					
+				)} */}
+
+		</div>
 	);
 }
 export default BadmintonViewScore;

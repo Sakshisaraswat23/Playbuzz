@@ -12,8 +12,9 @@ const useStyles = makeStyles({
         width: '50%',
         margin: '5% 0 0 25%',
         '& > *': {
-            marginTop: 20
-        }
+            marginTop: 20,
+        },
+       
     }
 })
 
@@ -45,23 +46,23 @@ const AddMatch = () => {
 
     return (
         <>
-         <FormGroup className={classes.container}>
+         <FormGroup className={classes.container}   style={{color:"white"}}>
             <Typography variant="h4">Add Match</Typography>
-            <FormControl>
-                <InputLabel htmlFor="my-input">Player1 VS Player2</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name='title' required autoComplete="off" />
+            <FormControl  >
+                <InputLabel  style={{color:"white"}} htmlFor="my-input">Player1 VS Player2</InputLabel>
+                <Input style={{color:"white"}}  onChange={(e) => onValueChange(e)} name='title' required autoComplete="off" />
             </FormControl>
             <FormControl>
-                <InputLabel htmlFor="my-input">YYYY/MM/DD</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name='date' required autoComplete="off" />
+                <InputLabel style={{color:"white"}}  htmlFor="my-input">YYYY/MM/DD</InputLabel>
+                <Input style={{color:"white"}}  onChange={(e) => onValueChange(e)} name='date' required autoComplete="off" />
             </FormControl>
             <FormControl>
-                <InputLabel htmlFor="my-input">Sports</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name='sports' required autoComplete="off" />
+                <InputLabel style={{color:"white"}}  htmlFor="my-input">Sports</InputLabel>
+                <Input style={{color:"white"}}  onChange={(e) => onValueChange(e)} name='sports' required autoComplete="off" />
             </FormControl>
-            <RadioGroup onChange={(e) => onValueChange(e)} name='gender'>
-                <FormControlLabel value="female" label="Girls" control={<Radio/>}/>
-                <FormControlLabel value="male" label="Boys" control={<Radio/>}/>
+            <RadioGroup  onChange={(e) => onValueChange(e)} name='gender'>
+                <FormControlLabel  value="female" label="Girls" control={<Radio/>}/>
+                <FormControlLabel   value="male" label="Boys" control={<Radio/>}/>
             </RadioGroup>
             
             <Link to="/" style={{ textDecoration: 'none' }}>

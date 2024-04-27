@@ -10,6 +10,8 @@ const useStyles = makeStyles({
 	row: {
 		'& > *': {
 			fontSize: 18,
+			color:"white",
+			textAlign:"center"
 		},
 	},
 });
@@ -24,6 +26,7 @@ function Readrow({ user }) {
 		try{
 			const {username} = await getUsername(); 
 			const {data}= await axios.get(`/api/user/${username}`);
+			// console.log(data)
 			if(data.admin==1)
 			{
 				setShow(true);	
@@ -38,7 +41,7 @@ function Readrow({ user }) {
 	function showrow(val) {
 		return (
 			<>
-				<TableRow key={val} className={classes.row}>
+				<TableRow key={val} className={classes.row}  >
 					<TableCell>{val}</TableCell>
 					<TableCell>{user[val][0]}</TableCell>
 					<TableCell>{user[val][1]}</TableCell>
@@ -46,9 +49,9 @@ function Readrow({ user }) {
 						<TableCell>
 						<Link to={`/editscore/${user._id}/${val}`} style={{ textDecoration: 'none' }}>
 							<Button
-								color="primary"
-								variant="contained"
-								style={{ marginRight: 10 }}
+								// color="white"
+								// variant="contained"
+								// style={{ marginRight: 10 }}
 							>
 								Edit
 							</Button>

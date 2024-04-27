@@ -11,6 +11,6 @@ const badmintonSchema = new mongoose.Schema({
 	sports: String,
 });
 //collection -> class
-const PostUser = mongoose.model('badminton', badmintonSchema);
+const User = mongoose.model('badminton', badmintonSchema);
 
-export default PostUser;
+export default User;

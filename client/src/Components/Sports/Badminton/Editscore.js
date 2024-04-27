@@ -39,12 +39,13 @@ const useStyles = makeStyles({
 		'& > *': {
 			fontSize: 20,
 			background: '#164e63',
-			color: '#FFFFFF',
+			color: "white",
 		},
 	},
 	row: {
 		'& > *': {
 			fontSize: 18,
+			color:"white"
 		},
 	},
 	container: {
@@ -91,7 +92,7 @@ function Editscore(props) {
 	const title_array = user.title.split(' ');
 	return (
 		<>
-			<Table className={classes.table}>
+			<Table className={classes.table}  style={{color:"white"}}>
 				<TableHead>
 					<TableRow className={classes.thead}>
 						<TableCell></TableCell>
@@ -102,10 +103,11 @@ function Editscore(props) {
 				</TableHead>
 				<TableBody>
 					<TableRow className={classes.row}>
-						<TableCell>{set}</TableCell>
+						<TableCell >{set}</TableCell>
 						<TableCell>
-							<FormControl>
+							<FormControl style={{color:"white"}}>
 								<Input
+									style={{color:"white"}}
 									onChange={e => onValueChange(e)}
 									name="one"
 									value={user[set][0]}
@@ -116,6 +118,7 @@ function Editscore(props) {
 						<TableCell>
 							<FormControl>
 								<Input
+									style={{color:"white"}}
 									onChange={e => onValueChange(e)}
 									name="two"
 									value={user[set][1]}

@@ -1,5 +1,13 @@
 /* YourComponent.css */
+body {
+	/* background: #ecfeff; */
+	background: #200E3A;
+	margin: 0;
+	overflow: hidden;
+}
+
   .cent{
-    margin-left: 18%;
+    margin-left: 15%;
+    /* align-self: center; */
     width:13%;
   }

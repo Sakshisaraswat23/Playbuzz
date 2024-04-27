@@ -10,34 +10,26 @@ import axios from "axios";
 import { addliked_matches } from "../Service/api";
 import { getUsername } from "../../helper/helper";
 import toast, { Toaster } from "react-hot-toast";
-  import "./Time.css";
-// const useStyles = makeStyles({
-// 	timeline: {
-// 		marginLeft: '10%',
-// 	},
-// });
+import "./Time.css";
 
 export default function ColorsTimeline() {
   const [matchesData, setmatchesData] = useState([]); //matches
-  const [pageCount, setpageCount] = useState(3);
+  const [pageCount, setpageCount] = useState(4);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [userData, setuserData] = useState({}); //user ka data
-  // const classes = useStyles();
-  // console.log(sports);
+
   useEffect(() => {
     (async () => {
       getTotalCount();
       const data = await getdata();
       setuserData(data);
-      console.log(data);
       const matches = await fetchMatches2(data, 1);
-      console.log(matches);
       setmatchesData(matches);
     })();
   }, []);
   useEffect(() => {
-    if (checked.length || radio.length) fetchMatches(1);
+    fetchMatches(1);
   }, [checked, radio]);
 
   //   const filterMatch = async () => {
@@ -52,7 +44,7 @@ export default function ColorsTimeline() {
 
   const getTotalCount = async () => {
     let total = await getcount();
-    setpageCount(Math.ceil(total.data / 3));
+    setpageCount(Math.ceil(total.data / 4));
   };
 
   // const fetchMatches = async (currentPage) => {
@@ -83,6 +75,7 @@ export default function ColorsTimeline() {
 
     setmatchesData(arr);
   };
+
   const fetchMatches2 = async (uData, currentPage) => {
     let response = await matchList(currentPage, checked, radio);
     let arr = response.data.map((match) => {
@@ -92,12 +85,14 @@ export default function ColorsTimeline() {
       return { ...match, isliked: isLiked };
     });
 
+    //generated a new array of matches which includes a new attribute in each object.
     return arr;
   };
+
   const handleUserClick = async (modifiedMatchData) => {
     try {
-      let { status } = await addliked_matches(userData._id,modifiedMatchData._id )
-      if(status === 200){
+      let { status } = await addliked_matches(userData._id, modifiedMatchData._id)
+      if (status === 200) {
         toast.success(' Successfully done!')
         const matchIndex = matchesData.findIndex(
           (user) => user._id === modifiedMatchData._id
@@ -107,12 +102,12 @@ export default function ColorsTimeline() {
         updatedmatchesData[matchIndex] = modifiedMatchData;
         // Update the state with the modified matchesData array
         setmatchesData(updatedmatchesData);
-        
-      }  
+
+      }
     } catch (error) {
       return toast.error('Error try again!')
     }
-    
+
   };
 
   const handlePageClick = async (data) => {
@@ -120,7 +115,7 @@ export default function ColorsTimeline() {
     fetchMatches(currentPage);
   };
   const handleFilter = (value, id, name) => {
-    let all = [...checked];
+    let all = [...checked]; //previous value. value is true/false (checked or not)
     if (value) {
       all.push(name);
     } else {
@@ -135,37 +130,45 @@ export default function ColorsTimeline() {
       <Box
         sx={{
           display: "flex",
+          flexDirection: { xs: "column", md: "row" },
           width: "100vw",
           height: "100vh",
           overflow: "hidden",
         }}
       >
-        <Box sx={{ width: "30%", flexShrink: 0 }}>
-          <div className="col-md-3 filters">
+        <Box sx={{ width: { xs: "100%", md: "30%" }, flexShrink: 0 }}>
+          <div className="col-md-4 filters" style={{ color: "white" }}>
             <h4 className="text-center">Filter By Category</h4>
-            <div className="d-flex flex-column">
+            <hr style={{
+              color: "white",
+              height: 2
+            }} />
+            <div className="d-flex flex-column" style={{ color: "white", marginTop: "10px" }}>
               {sports?.map((c) => (
                 <Checkbox
                   key={c._id}
-                  onChange={(e) =>
-                    handleFilter(e.target.checked, c._id, c.name)
-                  }
+                  onChange={(e) => handleFilter(e.target.checked, c._id, c.field)}
+                  style={{ color: "white", marginTop: "2px", marginBottom: "2px" }}
                 >
                   {c.name}
                 </Checkbox>
               ))}
             </div>
             <h4 className="text-center mt-4">Filter By Gender</h4>
-            <div className="d-flex flex-column">
+            <hr style={{
+              color: "white",
+              height: 2
+            }} />
+            <div className="d-flex flex-column" style={{ color: "white", marginTop: "10px" }}>
               <Radio.Group onChange={(e) => setRadio(e.target.value)}>
                 {Gender?.map((p) => (
-                  <div key={p._id}>
-                    <Radio value={p.gender}>{p.name}</Radio>
+                  <div key={p._id} style={{ color: "white" }}>
+                    <Radio style={{ color: "white", marginTop: "2px", marginBottom: "2px" }} value={p.gender}>{p.name} </Radio>
                   </div>
                 ))}
               </Radio.Group>
             </div>
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column" style={{ marginTop: "15px" }}>
               <button
                 className="btn btn-danger"
                 onClick={() => window.location.reload()}
@@ -176,17 +179,16 @@ export default function ColorsTimeline() {
           </div>
         </Box>
         <Box sx={{ flexGrow: 1 }}>
-          <>
-            <div>
-              {matchesData?.map((user) => (
-                <Card
-                  key={user._id}
-                  prop={user}
-                  onUserClick={handleUserClick}
-                />
-              ))}
-            </div>
-            <div className={"cent"}>
+          <div className="card-container">
+            {matchesData?.map((user) => (
+              <Card
+                key={user._id}
+                prop={user}
+                onUserClick={handleUserClick} //callback
+              />
+            ))}
+          </div>
+          <div className={"cent"}>
             <ReactPaginate
               previousLabel={"previous"}
               nextLabel={"next"}
@@ -206,9 +208,7 @@ export default function ColorsTimeline() {
               breakLinkClassName={"page-link"}
               activeClassName={"active"}
             />
-            </div>
-            
-          </>
+          </div>
         </Box>
       </Box>
     </>

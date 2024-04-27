@@ -5,8 +5,16 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import TrophyIcon from '@mui/icons-material/EmojiEvents';
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+
+/*
+Learning from this component:
+1st approach : called the user data inside this --> this leads to call of same api n numbers of time
+2nd approach : the one I m using --> help not to store data instead just pass the data between parent and child data
+3rd approach : could have store the user data globally and do all the necessary operations. 
+*/
 
 export default function MultiActionAreaCard({ prop, onUserClick }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -15,13 +23,8 @@ export default function MultiActionAreaCard({ prop, onUserClick }) {
   }, []);
 
   const getdata = async () => {
-    // console.log(prop._id)
-    // console.log(prop.isliked)
     setIsFavorite(prop.isliked);
   };
-  // const callapi=async(all) =>{
-  //   await addliked_matches(userData._id,all);
-  // }
   const handleFavoriteClick = async () => {
     setIsFavorite(!prop.isliked);
     onUserClick({
@@ -29,34 +32,6 @@ export default function MultiActionAreaCard({ prop, onUserClick }) {
       isliked: !prop.isliked, // Toggle the isliked property
     });
   };
-  // const handleFavoriteClick = async(id) => {
-  //           // setuserData(data);
-  //           // console.log(userData)
-  //           if(userData?._id)
-  //           {
-  //                 // console.log(liked_arr)
-  //                 console.log(isFavorite);
-  //                 let all = [...liked_arr];
-  //                 if (!isFavorite) {
-  //                   all.push(id);
-  //                 } else {
-  //                   all = all.filter((c) => c !== id);
-  //                 }
-  //                 // console.log(all);
-  //                 // console.log(liked_arr)
-  //                 setIsFavorite(!isFavorite);
-  //                 // console.log(isFavorite);
-  //                 await callapi(all); // abh await lagaya toh fetch hi nhi ho rha.
-  //                 setreload(true); //data change nhi hua uss se phele hi data fetch ho rha tha
-  //                 console.log(reload)
-
-  //           }
-  //     		else
-  //     		{
-  //     			toast("Login needed");
-  //     		}
-
-  // };
   var currentDate = new Date().toISOString();
   let toshow = currentDate < prop.date;
   var newDate = new Date(prop.date).toLocaleDateString("en-GB");
@@ -66,14 +41,11 @@ export default function MultiActionAreaCard({ prop, onUserClick }) {
   return (
     <>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-
       <Card
         style={{
-          boxShadow: showmatch
-            ? "0px 1px 10px 1px #0891b2"
-            : "0px 1px 10px 1px black",
-          marginBottom: "25px",
-          marginTop: "10px",
+          marginBottom: "15px",
+          // marginTop: "5px",
+          borderRadius: "20px",
         }}
         sx={{
           width: "100%",
@@ -86,56 +58,31 @@ export default function MultiActionAreaCard({ prop, onUserClick }) {
           },
         }}
       >
-        <CardActionArea>
-          <div
-            style={{
-              height: "40px",
-              background: "linear-gradient(to left,#a5f3fc,#06b6d4)",
-            }}
-          >
-            <Typography
-              variant="h6"
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                paddingTop: "5px",
-              }}
-            >
-              {newDate}
-            </Typography>
-          </div>
-
-          <CardContent>
-            <Typography gutterBottom variant="h6" component="div">
-              {prop.title}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <span>Sport:</span> {prop.sports}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <span>Winner:</span> {prop.winner}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Link
-            to={`/badmintonscore/${prop._id}`}
-            style={{ textDecoration: "none" }}
-          >
+        <CardContent>
+          <Typography variant="h6" style={{ textAlign: "center", height: "30px", background: "#0891b2", color: "white", borderRadius: "20px", marginTop: "-7px" }}>
+            {prop.sports.charAt(0).toUpperCase() + prop.sports.slice(1)} - {prop.title}
+          </Typography>
+          <Typography style={{ textAlign: "center", marginTop: "10px" }}>
+            {prop.winner ? `Winner: ${prop.winner}` : "No winner yet"}
+            {prop.winner && <TrophyIcon style={{ fontSize: 20, verticalAlign: "middle", marginLeft: "5px", color: "gold" }} />} {/* Trophy icon */}
+          </Typography>
+        </CardContent>
+        <div style={{ display: "flex", justifyContent: "space-around", marginTop: "-15px" }}>
+          <Link to={`/badmintonscore/${prop._id}`} style={{ textDecoration: "none", marginRight: "10px" }}>
             <Button size="small" color="primary" disabled={toshow}>
               View Score
             </Button>
           </Link>
-          {/* <Button size="small">Learn More</Button> */}
           <IconButton
             aria-label="add to favorites"
-            onClick={() => handleFavoriteClick()}
+            onClick={handleFavoriteClick}
             style={{ color: isFavorite ? "red" : "inherit" }}
           >
             <FavoriteIcon />
           </IconButton>
-        </CardActions>
+        </div>
       </Card>
+
     </>
   );
 }

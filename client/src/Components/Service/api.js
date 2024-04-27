@@ -9,6 +9,7 @@ export const getUsers = async (id) => {
   return await axios.get(`/api/${id}`);
 };
 export const addUser = async (user) => {
+
   return await axios.post(`/api/add`, user);
 };
 export const editUser = async (id, user) => {
@@ -32,5 +33,5 @@ export const matchfilter = async (checked, radio) => {
 
 export const addliked_matches = async (id, matchId) => {
   console.log(matchId);
-  return await axios.post(`/api/addliked_matches/${id}`, {matchId});
+  return await axios.post(`/api/addliked_matches/${id}`, { matchId });
 };
